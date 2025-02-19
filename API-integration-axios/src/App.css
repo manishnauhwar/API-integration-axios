@@ -31,7 +31,7 @@ button {
 button:hover {
   background-color: hsl(160, 70%, 40%);
   color: #ffffff;
-  box-shadow: rgb(9, 172, 115) 0px 7px 10px 0px;
+  box-shadow: rgb(9, 172, 115) 0px 7px 19px 0px;
 }
 
 .btn-delete {
@@ -40,7 +40,7 @@ button:hover {
 
 .btn-delete:hover {
   background-color: #c0392b;
-  box-shadow: rgb(167, 54, 13) 0px 7px 10px 0px;
+  box-shadow: rgb(167, 54, 13) 0px 7px 19px 0px;
 }
 
 .section-post {
@@ -118,6 +118,11 @@ button:hover {
   font-size: 1.5rem;
   transition: all 0.3s ease;
   margin: 0;
+}
+.section-form form button:hover {
+  background-color: hsl(160, 70%, 40%);
+  color: #ffffff;
+  box-shadow: rgb(9, 172, 115) 0px 7px 19px 0px;
 }
 
 .post-id {

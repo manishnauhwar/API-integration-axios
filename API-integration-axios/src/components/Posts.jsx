@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { getpost, deletepost} from '../api/getpost'
+import { getpost, deletepost } from '../api/getpost'
 import { Form } from './Form';
 import '../App.css'
 
 export const Posts = () => {
 
   const [data, setData] = useState([])
+  const [updatedata, setUpdatedata] = useState({});
 
 
   const getpostdata = (async () => {
@@ -17,8 +18,7 @@ export const Posts = () => {
   useEffect(() => {
     getpostdata();
   }, []);
-
-
+//----------Delete a post------
   const handledeletepost = (async (id) => {
     try {
       const res = await deletepost(id);
@@ -32,13 +32,19 @@ export const Posts = () => {
       console.log(error);
     }
   })
+//-------------Update a post---------
+  const handleupdatepost =(curElem) => setUpdatedata(curElem);
+
 
   return (
     <>
-<section  className='section-form'>
-  <Form data={data} setData={setData}/>
+      <section className='section-form'>
+        <Form data={data}
+          setData={setData}
+          updatedata={updatedata}
+          setUpdatedata={setUpdatedata} />
 
-</section>
+      </section>
 
       <section className='section-post'>
         <ul>
@@ -47,7 +53,7 @@ export const Posts = () => {
             return <li key={id}>
               <p>TITLE:{title}</p>
               <p>BODY:{body}</p>
-              <button>Edit</button>
+              <button onClick={() => handleupdatepost(curElem)}>Edit</button>
               <button
                 className='btn-delete' onClick={() => handledeletepost(id)}>
                 Delete
