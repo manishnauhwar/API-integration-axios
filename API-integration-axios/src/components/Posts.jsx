@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getpost, deletepost } from '../api/getpost'
+import { getpost, deletepost} from '../api/getpost'
+import { Form } from './Form';
 import '../App.css'
 
 export const Posts = () => {
@@ -18,7 +19,7 @@ export const Posts = () => {
   }, []);
 
 
-  const handledelelepost = (async (id) => {
+  const handledeletepost = (async (id) => {
     try {
       const res = await deletepost(id);
       if (res.status === 200) {
@@ -34,6 +35,11 @@ export const Posts = () => {
 
   return (
     <>
+<section  className='section-form'>
+  <Form data={data} setData={setData}/>
+
+</section>
+
       <section className='section-post'>
         <ul>
           {data.map((curElem) => {
@@ -43,7 +49,7 @@ export const Posts = () => {
               <p>BODY:{body}</p>
               <button>Edit</button>
               <button
-                className='btn-delete' onClick={() => handledelelepost(id)}>
+                className='btn-delete' onClick={() => handledeletepost(id)}>
                 Delete
               </button>
 
