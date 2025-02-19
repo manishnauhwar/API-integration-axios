@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import getpost from '../api/getpost'
+import { getpost, deletepost } from '../api/getpost'
 import '../App.css'
 
 export const Posts = () => {
@@ -9,36 +9,46 @@ export const Posts = () => {
 
   const getpostdata = (async () => {
     const res = await getpost();
-    console.log(res.data);
     setData(res.data);
 
   })
 
   useEffect(() => {
-    (async () => {
-      const res = await getpost();
-      setData(res.data);
-    })();
+    getpostdata();
   }, []);
-    
 
 
+  const handledelelepost = (async (id) => {
+    try {
+      const res = await deletepost(id);
+      if (res.status === 200) {
+        const newData = data.filter((curElem) => {
+          return curElem.id !== id;
+        });
+        setData(newData);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  })
 
   return (
     <>
       <section className='section-post'>
         <ul>
-        {data.map((curElem) => {
-          const { title, id, body } = curElem;
-         return <li key={id}>
-          <span className="post-id">{id}</span>
-            <p>TITLE:{title}</p>
-            <p>BODY:{body}</p>
-            <button>Edit</button>
-            <button className='btn-delete'>Delete</button>
+          {data.map((curElem) => {
+            const { title, id, body } = curElem;
+            return <li key={id}>
+              <p>TITLE:{title}</p>
+              <p>BODY:{body}</p>
+              <button>Edit</button>
+              <button
+                className='btn-delete' onClick={() => handledelelepost(id)}>
+                Delete
+              </button>
 
-          </li>
-        })}
+            </li>
+          })}
         </ul>
       </section>
     </>

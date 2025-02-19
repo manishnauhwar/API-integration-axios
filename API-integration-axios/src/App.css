@@ -18,7 +18,7 @@ input {
 }
 
 button {
-  padding: 0.8rem 3.2rem;
+  padding: 0.5rem 1.2rem;
   border-radius: 0.3rem;
   cursor: pointer;
   border: none;
@@ -46,11 +46,12 @@ button:hover {
 
 .section-post ul {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   padding: 0;
   margin: 0;
   list-style: none;
+  counter-reset: post-counter;
 }
 
 .section-post li {
@@ -65,13 +66,23 @@ button:hover {
   flex-direction: column;
   position: relative;
 }
+
+.section-post li::before {
+  counter-increment: post-counter;
+  content: counter(post-counter) ". ";
+  font-weight: bold;
+  margin-right: 10px;
+  color: #ffffff;
+  font-size: 1.8rem;
+}
+
 .post-id {
   position: absolute;
   top: 10px;
-  left: 10px;
-  font-size: 1.8rem;
+  left: 20px;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #fff;
+  color: #ffffff;
 }
 
 .section-post p {
@@ -88,12 +99,13 @@ button:hover {
 }
 
 .btn-delete:hover {
-  box-shadow: rgb(167, 54, 13) 0px 7px 19px 0px;
+  background-color: #c0b2e4;
+  box-shadow: rgb(167, 54, 13) 0px 7px 10px 0px;
 }
 
 @media screen and (max-width: 980px) {
   .section-post ul {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
