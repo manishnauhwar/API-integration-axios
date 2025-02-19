@@ -10,5 +10,10 @@ export const getpost = () => {
 
 // ----DELETE POSTS----
 export const deletepost = (id) => {
-  return api.get(`/posts/${id}`);
+  return api.delete(`/posts/${id}`);
 } 
+
+// ------POST METHOD-----
+export const postdata =(post)=>{
+  return api.post("/posts",post)
+};
